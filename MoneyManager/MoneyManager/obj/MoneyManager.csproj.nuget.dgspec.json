@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Важливі документи\\Важливо!!!\\Програмування\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj": {}
+    "D:\\Important documents\\Important\\Programming\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj": {}
   },
   "projects": {
-    "D:\\Важливі документи\\Важливо!!!\\Програмування\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj": {
+    "D:\\Important documents\\Important\\Programming\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Важливі документи\\Важливо!!!\\Програмування\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj",
+        "projectUniqueName": "D:\\Important documents\\Important\\Programming\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj",
         "projectName": "MoneyManager",
-        "projectPath": "D:\\Важливі документи\\Важливо!!!\\Програмування\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj",
+        "projectPath": "D:\\Important documents\\Important\\Programming\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\MoneyManager.csproj",
         "packagesPath": "C:\\Users\\Andrii\\.nuget\\packages\\",
-        "outputPath": "D:\\Важливі документи\\Важливо!!!\\Програмування\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\obj\\",
+        "outputPath": "D:\\Important documents\\Important\\Programming\\Repository\\MoneyManager\\MoneyManager\\MoneyManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -50,6 +50,24 @@
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
