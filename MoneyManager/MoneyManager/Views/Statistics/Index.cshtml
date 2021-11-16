@@ -1,0 +1,47 @@
+﻿@model MoneyManager.Models.ViewModels.StatisticsViewModel
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Статистика</h2>
+        </div>
+    </div>
+    <br />
+
+    @if (@Model.StatisticsItemsViewModelsCollection.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Категорія витрати
+                    </th>
+                    <th>
+                        Опис
+                    </th>
+                    <th>
+                        Витрати(грн.)
+                    </th>
+                    <th>
+                        Дата
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+               @foreach (var item in @Model.StatisticsItemsViewModelsCollection)
+                {
+                    <tr>
+                        <td width="25%">@item.Catecategory</td>
+                        <td width="35%">@item.Description</td>
+                        <td width="10%">@item.Amount</td>
+                        <td width="10%">@item.DateCreated.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Не знайдено ніяких транзакцій з грошима</p>
+    }
+</div>

@@ -16,9 +16,5 @@ namespace MoneyManager.Repositories.Services.Interfaces
         Task AddExpenseViewModelAsync(ExpenseViewModel entity);
         Task RemoveExpenseViewModelAsync(ExpenseViewModel entity);
         Task UpdateExpenseViewModelAsync(ExpenseViewModel entity);
-
-        Task<decimal> GetTotalExpenseAsync();
-        Task<decimal> GetCurrentMonthExpenseAsync();
-        //Task<Dictionary<string, decimal>> GetTotalExpenseByExpenseTypeAsync();
     }
 }

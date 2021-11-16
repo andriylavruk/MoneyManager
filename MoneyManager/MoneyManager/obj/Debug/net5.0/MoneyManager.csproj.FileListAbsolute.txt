@@ -797,3 +797,4 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Statistics\Index.cshtml.g.cs

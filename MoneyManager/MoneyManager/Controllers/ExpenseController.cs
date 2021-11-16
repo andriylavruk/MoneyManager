@@ -32,9 +32,7 @@ namespace MoneyManager.Controllers
         {
             ExpenseViewModel expenseViewModel = new ExpenseViewModel()
             {
-                TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync(),
-                TotalExpense = await _expenseService.GetTotalExpenseAsync(),
-                CurrentMonthExpense = await _expenseService.GetCurrentMonthExpenseAsync()
+                TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync()
             };
 
             return View(expenseViewModel);

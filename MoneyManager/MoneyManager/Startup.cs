@@ -10,6 +10,8 @@ using MoneyManager.Repositories;
 using MoneyManager.Repositories.Interfaces;
 using MoneyManager.Repositories.Services;
 using MoneyManager.Repositories.Services.Interfaces;
+using MoneyManager.Services;
+using MoneyManager.Services.Interfaces;
 
 namespace MoneyManager
 {
@@ -33,6 +35,8 @@ namespace MoneyManager
 
             services.AddScoped<IExpenseRepository, ExpenseRepository>();
             services.AddScoped<IExpenseService, ExpenseService>();
+
+            services.AddScoped<IStatisticsService, StatisticsService>();
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityApplicationDbContext>();
 

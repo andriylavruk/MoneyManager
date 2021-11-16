@@ -13,9 +13,6 @@ namespace MoneyManager.Models.ViewModels
         public int ExpenseTypeId { get; set; }
         public ExpenseTypeViewModel ExpenseType { get; set; }
 
-        public decimal TotalExpense { get; set; }
-        public decimal CurrentMonthExpense { get; set; }
-
         public IEnumerable<SelectListItem> TypeDropDown { get; set; }
 
         public ExpenseViewModel() { }

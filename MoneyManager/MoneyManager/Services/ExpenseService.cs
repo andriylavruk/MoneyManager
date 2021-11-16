@@ -74,41 +74,5 @@ namespace MoneyManager.Repositories.Services
                 await _expenseRepository.UpdateAsync(expense);
             }
         }
-
-        public async Task<decimal> GetTotalExpenseAsync()
-        {
-            var allExpenses = await _expenseRepository.GetAllAsync();
-
-            return allExpenses.Sum(x => x.Amount);
-        }
-
-        public async Task<decimal> GetCurrentMonthExpenseAsync()
-        {
-            var allExpenses = await _expenseRepository.GetAllAsync();
-
-            return allExpenses
-                .Where(x => x.DateCreated.Month == DateTime.Now.Month)
-                .Sum(x => x.Amount);
-        }
-
-        /*public async Task<Dictionary<string, decimal>> GetTotalExpenseByExpenseTypeAsync()
-        {
-            var expenseTypes = await _expenseTypeRepository.GetAllAsync();
-
-            Dictionary<string, decimal> result = null;
-
-            for (int i = 0; i < expenseTypes.Count(); i++)
-            {
-                result.Add(expenseTypes.ToString(), );
-            }
-
-            foreach(var i in expenseTypes)
-            {
-                result.Add(i, await _expenseRepository.FindAsync(x => x.ExpenseType.Name == i.Name));
-            }
-            //var result = expenseTypes.ToDictionary(k => k, v => );
-
-            throw new NotImplementedException();
-        }*/
     }
 }
