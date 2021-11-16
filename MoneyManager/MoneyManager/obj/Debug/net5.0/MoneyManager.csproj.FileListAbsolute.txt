@@ -380,8 +380,6 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.CookiePolicy.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cors.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.DataProtection.Extensions.dll
@@ -466,8 +464,6 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Hosting.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Http.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Identity.Core.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Identity.Stores.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Localization.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
@@ -794,3 +790,10 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\ExpenseType\Delete.cshtml.g.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\ExpenseType\Index.cshtml.g.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\ExpenseType\Update.cshtml.g.cs
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs

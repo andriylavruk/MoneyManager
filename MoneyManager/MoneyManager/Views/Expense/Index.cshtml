@@ -17,16 +17,16 @@
             <thead>
                 <tr>
                     <th>
-                        Id
+                        Категорія витрати
                     </th>
                     <th>
-                        Назва
+                        Опис
                     </th>
                     <th>
                         Витрати(грн.)
                     </th>
                     <th>
-                        Опис
+                        Дата
                     </th>
                     <th>
                         Опції
@@ -36,16 +36,18 @@
             <tbody>
                 @foreach (var expense in Model)
                 {
-                    <tr>
-                        <td width="10%">@expense.Id</td>
-                        <td width="30%">@expense.Name</td>
-                        <td width="20%">@expense.Amount</td>
-                        <td width="40%">@expense.Description</td>
-                        <td class="w-100 btn-group" role="group">
+                <tr>
+                    <td width="25%">@expense.ExpenseType.Name</td>
+                    <td width="35%">@expense.Description</td>
+                    <td width="10%">@expense.Amount</td>
+                    <td width="10%">@expense.DateCreated.ToShortDateString()</td>
+                    <td width="20%">
+                        <div class="w-100 btn-group" role="group">
                             <a class="btn btn-primary mx-1" asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id">Оновити</a>
                             <a class="btn btn-danger mx-1" asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id">Видалити</a>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,16 +13,15 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MoneyManager</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+    <header class="p-2 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+                    <h4 class="text-dark">MoneyManager</h4>
+                </a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                         </li>
@@ -28,9 +32,27 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="ExpenseType" asp-action="Index">Категорії витрат</a>
                         </li>
                     </ul>
-                </div>
+                    
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">@User.Identity.Name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
+
+                    <div class="text-end">
+                        <a class="btn btn-outline-primary me-2" asp-area="" asp-controller="Account" asp-action="Login">Увійти</a>
+                        <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Зареєструватися</a>
+                    </div>
+                }
             </div>
-        </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

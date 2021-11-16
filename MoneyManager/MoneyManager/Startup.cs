@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoneyManager.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MoneyManager.Repositories;
+using MoneyManager.Repositories.Interfaces;
+using MoneyManager.Repositories.Services;
+using MoneyManager.Repositories.Services.Interfaces;
 
 namespace MoneyManager
 {
@@ -26,6 +26,16 @@ namespace MoneyManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<IdentityApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IExpenseTypeRepository, ExpenseTypeRepository>();
+            services.AddScoped<IExpenseTypeService, ExpenseTypeService>();
+
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
+            services.AddScoped<IExpenseService, ExpenseService>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityApplicationDbContext>();
+
             services.AddControllersWithViews();
         }
 
@@ -47,6 +57,7 @@ namespace MoneyManager
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

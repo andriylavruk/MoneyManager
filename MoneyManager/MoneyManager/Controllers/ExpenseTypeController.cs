@@ -1,111 +1,115 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
-using System;
+using MoneyManager.Repositories.Services.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using MoneyManager.Models.ViewModels;
 
 namespace MoneyManager.Controllers
 {
+    [Authorize]
     public class ExpenseTypeController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IExpenseTypeService _expenseTypeService;
 
-        public ExpenseTypeController(ApplicationDbContext db)
+        public ExpenseTypeController(IExpenseTypeService expenseTypeService)
         {
-            _db = db;
+            _expenseTypeService = expenseTypeService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<ExpenseType> expenseTypes = _db.ExpenseTypes;
+            IEnumerable<ExpenseType> expenseTypes = await _expenseTypeService.GetAllExpenseTypesAsync();
             return View(expenseTypes);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        //Post Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ExpenseType expenseType)
+        public async Task<IActionResult> Create(ExpenseTypeViewModel expenseTypeViewModel)
         {
             if (ModelState.IsValid)
             {
-                _db.ExpenseTypes.Add(expenseType);
-                _db.SaveChanges();
+                await _expenseTypeService.AddExpenseTypeViewModelAsync(expenseTypeViewModel);
                 return RedirectToAction("Index");
             }
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
 
-        //Get Delete
-        public IActionResult Delete(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var expenseType = _db.ExpenseTypes.Find(id);
+            var expenseTypeViewModel = await _expenseTypeService.GetExpenseTypeViewModelByIdAsync(id);
 
-            if (expenseType == null)
+            if (expenseTypeViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
 
-        //Post Delete
-        public IActionResult DeletePost(int? id)
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(ExpenseTypeViewModel expenseTypeViewModel)
         {
-            var expenseType = _db.ExpenseTypes.Find(id);
-
-            if (expenseType == null)
+            if (expenseTypeViewModel == null)
             {
                 return NotFound();
             }
 
-            _db.ExpenseTypes.Remove(expenseType);
-            _db.SaveChanges();
+            var expenseTypeViewModelDelete = await _expenseTypeService.GetExpenseTypeViewModelByIdAsync(expenseTypeViewModel.Id);
+
+            if (expenseTypeViewModelDelete == null)
+            {
+                return NotFound();
+            }
+
+            await _expenseTypeService.RemoveExpenseTypeViewModelAsync(expenseTypeViewModelDelete);
             
             return RedirectToAction("Index");
         }
 
-        //Get Update
-        public IActionResult Update(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var expenseType = _db.ExpenseTypes.Find(id);
+            var expenseTypeViewModel = await _expenseTypeService.GetExpenseTypeViewModelByIdAsync(id);
 
-            if (expenseType == null)
+            if (expenseTypeViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
 
-        //Post Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(ExpenseType expenseType)
+        public async Task<IActionResult> Update(ExpenseTypeViewModel expenseTypeViewModel)
         {
             if (ModelState.IsValid)
             {
-                _db.ExpenseTypes.Update(expenseType);
-                _db.SaveChanges();
+                await _expenseTypeService.UpdateExpenseTypeViewModelAsync(expenseTypeViewModel);
+
                 return RedirectToAction("Index");
             }
-            return View(expenseType);
+            return View(expenseTypeViewModel);
         }
     }
 }

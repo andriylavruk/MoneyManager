@@ -15,5 +15,14 @@ namespace MoneyManager.Data
 
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Expense>(entity =>
+            {
+                entity.Property(x => x.DateCreated).HasDefaultValueSql("getdate()");
+            });
+        }
+        
     }
 }

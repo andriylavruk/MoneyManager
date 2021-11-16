@@ -1,4 +1,4 @@
-﻿@model MoneyManager.Models.ExpenseType
+﻿@model MoneyManager.Models.ViewModels.ExpenseTypeViewModel
 
 <form method="post" asp-action="Create">
     <div class="border p-3">
@@ -8,12 +8,12 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="form-group row">
+                <div class="form-group row justify-content-center">
                     <div class="col-4">
                         <label asp-for="Name"></label>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row justify-content-center">
                     <div class="col-4">
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>

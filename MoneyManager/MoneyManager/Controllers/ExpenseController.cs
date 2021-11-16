@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
+using MoneyManager.Models.ViewModels;
+using MoneyManager.Repositories.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,104 +10,118 @@ using System.Threading.Tasks;
 
 namespace MoneyManager.Controllers
 {
+    [Authorize]
     public class ExpenseController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IExpenseService _expenseService;
+        private readonly IExpenseTypeService _expenseTypeService;
 
-        public ExpenseController(ApplicationDbContext db)
+        public ExpenseController(IExpenseService expenseService, IExpenseTypeService expenseTypeService)
         {
-            _db = db;
+            _expenseService = expenseService;
+            _expenseTypeService = expenseTypeService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Expense> expenses = _db.Expenses;
-            return View(expenses);
+            return View(await _expenseService.GetAllExpensesAsync());
         }
 
-        public IActionResult Create()
+        [HttpGet]
+        public async Task<IActionResult> Create()
         {
-            return View();
+            ExpenseViewModel expenseViewModel = new ExpenseViewModel()
+            {
+                TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync(),
+                TotalExpense = await _expenseService.GetTotalExpenseAsync(),
+                CurrentMonthExpense = await _expenseService.GetCurrentMonthExpenseAsync()
+            };
+
+            return View(expenseViewModel);
         }
 
-        //Post Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Expense expense)
+        public async Task<IActionResult> Create (ExpenseViewModel expenseViewModel)
         {
             if (ModelState.IsValid)
             {
-                _db.Expenses.Add(expense);
-                _db.SaveChanges();
+                await _expenseService.AddExpenseViewModelAsync(expenseViewModel);
+
                 return RedirectToAction("Index");
             }
-            return View(expense);
+            return View(expenseViewModel);
         }
 
-        //Get Delete
-        public IActionResult Delete(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var expense = _db.Expenses.Find(id);
+            var expenseViewModel = await _expenseService.GetExpenseViewModelByIdAsync(id);
+            expenseViewModel.TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync();
 
-            if (expense == null)
+            if (expenseViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(expense);
+            return View(expenseViewModel);
         }
 
-        //Post Delete
-        public IActionResult DeletePost(int? id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(ExpenseViewModel expenseViewModel)
         {
-            var expense = _db.Expenses.Find(id);
-
-            if (expense == null)
+            if (expenseViewModel == null)
             {
                 return NotFound();
             }
 
-            _db.Expenses.Remove(expense);
-            _db.SaveChanges();
-            
+            var expenseViewModelDelete = await _expenseService.GetExpenseViewModelByIdAsync(expenseViewModel.Id);
+
+            if (expenseViewModelDelete == null)
+            {
+                return NotFound();
+            }
+
+            await _expenseService.RemoveExpenseViewModelAsync(expenseViewModelDelete);
+
             return RedirectToAction("Index");
         }
 
-        //Get Update
-        public IActionResult Update(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var expense = _db.Expenses.Find(id);
+            var expenseViewModel = await _expenseService.GetExpenseViewModelByIdAsync(id);
+            expenseViewModel.TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync();
 
-            if (expense == null)
+            if (expenseViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(expense);
+            return View(expenseViewModel);
         }
 
-        //Post Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Expense expense)
+        public async Task<IActionResult> Update(ExpenseViewModel expenseViewModel)
         {
             if (ModelState.IsValid)
             {
-                _db.Expenses.Update(expense);
-                _db.SaveChanges();
+                await _expenseService.UpdateExpenseViewModelAsync(expenseViewModel);
+
                 return RedirectToAction("Index");
             }
-            return View(expense);
+            return  View(expenseViewModel);
         }
     }
 }

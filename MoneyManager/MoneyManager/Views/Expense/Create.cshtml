@@ -1,34 +1,40 @@
-﻿@model MoneyManager.Models.Expense
+﻿@model ExpenseViewModel
 
 <form method="post" asp-action="Create">
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
+            <input asp-for="TotalExpense" disabled class="form-control" />
+            <input asp-for="CurrentMonthExpense" disabled class="form-control" />
+        </div>
+        <div class="form-group row">
             <h2 class="text-black-50 pl-3">Додати витрату</h2>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Name"></label>
+                <div class="form-group row justify-content-center">
+                    <div class="col-3">
+                        <label asp-for="ExpenseType"></label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <label asp-for="Description"></label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <label asp-for="Amount"></label>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="form-group row justify-content-center">
+                    <div class="col-3">
+                        <select asp-for="ExpenseTypeId" asp-items="@Model.TypeDropDown" class="form-control">
+                            <option selected>--Виберіть --</option>
+                        </select>
+                        <span asp-validation-for="ExpenseTypeId" class="text-danger"></span>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <input asp-for="Description" class="form-control" />
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <input asp-for="Amount" class="form-control" />
                         <span asp-validation-for="Amount" class="text-danger"></span>
                     </div>
@@ -39,7 +45,7 @@
                             <input type="submit" class="btn btn-info w-75" value="Додати" />
                         </div>
                         <div class="col">
-                            <a class="btn btn-danger w-75"  asp-action="Index">Скасувати</a>
+                            <a class="btn btn-danger w-75" asp-action="Index">Скасувати</a>
                         </div>
                     </div>
                 </div>
