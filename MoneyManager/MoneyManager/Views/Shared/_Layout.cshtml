@@ -30,9 +30,6 @@
                     {
                         <ul class="navbar-nav mr-auto col justify-content-center">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Statistics" asp-action="Index">Статистика</a>
                             </li>
                             <li class="nav-item">
@@ -50,13 +47,7 @@
                     }
                     else
                     {
-                        <ul class="navbar-nav mr-auto col justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
-                            </li>
-                        </ul>
-
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav mr-auto col justify-content-end">
                             <li class="nav-item m-1">
                                 <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Login">Увійти</a>
                             </li>

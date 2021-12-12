@@ -1,37 +1,159 @@
 ﻿@model MoneyManager.Models.ViewModels.StatisticsViewModel
 
-<div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Статистика</h2>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="row">
-            <p>Загалом витрачено:</p>
-            <p>@Model.TotalExpense грн.</p>
-        </div>
-        <div class="row">
-            <p>Загалом витрачено цього року:</p>
-            <p>@Model.CurrentYearExpense грн.</p>
-        </div>
-        <div class="row">
-            <p>Загалом витрачено цього місяця:</p>
-            <p>@Model.CurrentMonthExpense грн.</p>
-        </div>
-        <div class="row">
-            <p>Загалом витрачено цього тижня:</p>
-            <p>@Model.CurrentWeekExpense грн.</p>
-        </div>
-    </div>
-    <div>
-        @{
-            foreach (var a in Model.ExpenseByExpenseType)
-            {
-                <p>@a.Item1</p>
-                <p>@a.Item2</p>
-            }
-        }
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card shadow-lg" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <div class="row pt-4">
+                            <div class="col">
+                                <h2 class="text-primary">Статистика</h2>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col">
+                            <h3 class="text-center">Витрати</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Витрати взагальному за весь період</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-danger">@Model.TotalExpense грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загалом витрачено цього року</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-danger">@Model.CurrentYearExpense грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загалом витрачено цього місяця</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-danger">@Model.CurrentMonthExpense грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загалом витрачено цього тижня</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-danger">@Model.CurrentWeekExpense грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <h3 class="text-center">Прибутки</h3>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Дохід взагальному за весь період</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success">@Model.TotalIncome грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загальний дохід цього року</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success">@Model.CurrentYearIncome грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загальний прибуток цього місяця</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success">@Model.CurrentMonthIncome грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                        <div class="card-header">Загальний прибуток цього тижня</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title text-success">@Model.CurrentWeekIncome грн.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
 
+                        <h3 class="text-center">Топ 5 катогорій по витратам на протязі місяця</h3>
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        №
+                                    </th>
+                                    <th>
+                                        Категорія
+                                    </th>
+                                    <th>
+                                        Сума
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var count = 1;
+
+                                    foreach (var expenses in Model.ExpenseByExpenseType)
+                                    {
+                                        <tr>
+                                            <td width="20%">@count</td>
+                                            <td width="50%">@expenses.Item1</td>
+                                            <td class="text-danger" width="30%">@expenses.Item2</td>
+                                        </tr>
+
+                                        count++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                        <br />
+                        <h3 class="text-center">Топ 5 катогорій по прибуткам на протязі місяця</h3>
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        №
+                                    </th>
+                                    <th>
+                                        Категорія
+                                    </th>
+                                    <th>
+                                        Сума
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var count2 = 1;
+
+                                    foreach (var incomes in Model.IncomeByIncomeType)
+                                    {
+                                        <tr>
+                                            <td width="20%">@count2</td>
+                                            <td width="50%">@incomes.Item1</td>
+                                            <td class="text-success" width="30%">@incomes.Item2</td>
+                                        </tr>
+
+                                        count2++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>

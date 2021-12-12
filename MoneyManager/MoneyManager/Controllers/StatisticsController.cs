@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models.ViewModels;
 using MoneyManager.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Controllers
@@ -27,7 +24,13 @@ namespace MoneyManager.Controllers
                 CurrentYearExpense = await _statisticsService.GetCurrentYearExpenseAsync(),
                 CurrentMonthExpense = await _statisticsService.GetCurrentMonthExpenseAsync(),
                 CurrentWeekExpense = await _statisticsService.GetCurrentWeekExpenseAsync(),
-                ExpenseByExpenseType = await _statisticsService.GetExpenseByExpenseType()
+                ExpenseByExpenseType = await _statisticsService.GetTop5ExpenseByExpenseType(),
+
+                TotalIncome = await _statisticsService.GetTotalIncomeAsync(),
+                CurrentYearIncome = await _statisticsService.GetCurrentYearIncomeAsync(),
+                CurrentMonthIncome = await _statisticsService.GetCurrentMonthIncomeAsync(),
+                CurrentWeekIncome = await _statisticsService.GetCurrentWeekIncomeAsync(),
+                IncomeByIncomeType = await _statisticsService.GetTop5IncomeByIncomeType()
             };
 
             return View(statistics);

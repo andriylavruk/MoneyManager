@@ -69,34 +69,22 @@
                                     <tr>
                                         <td width="20%">@expense.ExpenseType.Name</td>
                                         <td width="25%">@expense.Description</td>
-                                        <td width="10%">@expense.Amount.ToString("0")</td>
+                                        <td width="15%">@expense.Amount.ToString("0")</td>
                                         <td width="10%">@expense.DateCreated.ToShortDateString()</td>
-                                        <td width="35%">
+                                        <td width="30%">
                                             <div class="btn-group" role="group">
                                                 <div class="row">
-                                                    <div class="col m-1">
-                                                        <button type="button" class="btn btn-warning mx-1" asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="mdi mdi-pencil"></div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="d-none d-md-block">Редагувати</div>
-                                                                </div>
-                                                            </div>
-                                                        </button>
+                                                    <div class="col">
+                                                        <a class="btn btn-warning mx-1 m-1" asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id">
+                                                            <div class="mdi mdi-pencil"></div>
+                                                            <div class="d-none d-md-block">Редагувати</div>
+                                                        </a>
                                                     </div>
-                                                    <div class="col m-1">
-                                                        <button type="button" class="btn btn-danger mx-1" asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="mdi mdi-minus-box-outline"></div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="d-none d-md-block">Видалити</div>
-                                                                </div>
-                                                            </div>
-                                                        </button>
+                                                    <div class="col">
+                                                        <a type="button" class="btn btn-danger mx-1 m-1" asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id">
+                                                            <div class="mdi mdi-minus-box-outline"></div>
+                                                            <div class="d-none d-md-block">Видалити</div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

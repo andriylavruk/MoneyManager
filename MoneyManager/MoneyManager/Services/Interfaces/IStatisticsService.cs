@@ -12,7 +12,12 @@ namespace MoneyManager.Services.Interfaces
         Task<int> GetCurrentYearExpenseAsync();
         Task<int> GetCurrentMonthExpenseAsync();
         Task<int> GetCurrentWeekExpenseAsync();
+        Task<IEnumerable<Tuple<string, int>>> GetTop5ExpenseByExpenseType();
 
-        Task<IEnumerable<Tuple<string, int>>> GetExpenseByExpenseType();
+        Task<int> GetTotalIncomeAsync();
+        Task<int> GetCurrentYearIncomeAsync();
+        Task<int> GetCurrentMonthIncomeAsync();
+        Task<int> GetCurrentWeekIncomeAsync();
+        Task<IEnumerable<Tuple<string, int>>> GetTop5IncomeByIncomeType();
     }
 }
