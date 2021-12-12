@@ -20,7 +20,7 @@ namespace MoneyManager.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Expense/Index");
         }
 
         public IActionResult Privacy()

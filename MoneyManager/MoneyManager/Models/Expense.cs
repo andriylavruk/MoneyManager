@@ -16,10 +16,8 @@ namespace MoneyManager.Models
 
         [DisplayName("Сума")]
         [Required(ErrorMessage = "Обов'язкове поле")]
-        [Range(0, double.MaxValue, ErrorMessage = "Сума повинна бути більше 0.")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal Amount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "Сума повинна бути більше 0.")]
+        public int Amount { get; set; }
 
         [DisplayName("Дата")]
         public DateTime DateCreated { get; set; }
@@ -29,8 +27,6 @@ namespace MoneyManager.Models
         [DisplayName("Категорія витрат Id")]
         public int ExpenseTypeId { get; set; }
 
-        [DisplayName("Категорія витрат")]
-        [ForeignKey("ExpenseTypeId")]
         public virtual ExpenseType ExpenseType { get; set; }
     }
 }

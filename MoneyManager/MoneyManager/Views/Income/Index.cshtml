@@ -1,0 +1,106 @@
+﻿@model PaginatedList<MoneyManager.Models.Income>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Список доходів</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Income" asp-action="Create" class="btn btn-primary mdi mdi-plus-box-outline">Додати дохід</a>
+            <a asp-controller="IncomeType" asp-action="Index" class="btn btn-info mdi mdi-clipboard-outline">Список категорій доходів</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" value="Пошук" class="btn btn-default" /> |
+                    <a asp-action="Index">Повернути весь список</a>
+                </p>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["IncomeTypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Тип</a>
+                    </th>
+                    <th>
+                        Опис
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["AmountSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сума</a>
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Дата</a>
+                    </th>
+                    <th>
+                        Опції
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var income in Model)
+                {
+                    <tr>
+                        <td width="20%">@income.IncomeType.Name</td>
+                        <td width="30%">@income.Description</td>
+                        <td width="10%">@income.Amount.ToString("0")</td>
+                        <td width="10%">@income.DateCreated.ToShortDateString()</td>
+                        <td width="30%">
+                            <div class="w-100 btn-group" role="group">
+                                <a class="btn btn-warning mdi mdi-pencil mx-1" asp-controller="Income" asp-action="Update" asp-route-Id="@income.Id">Редагувати</a>
+                                <a class="btn btn-danger mdi mdi-minus-box-outline mx-1" asp-controller="Income" asp-action="Delete" asp-route-Id="@income.Id">Видалити</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.FirstPage)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-dark @prevDisabled">
+                    Перша
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-dark @prevDisabled">
+                    Попередня
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-dark @nextDisabled">
+                    Наступна
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.LastPage)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-dark @nextDisabled">
+                    Остання
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Не знайдено ніяких доходів</p>
+    }
+</div>

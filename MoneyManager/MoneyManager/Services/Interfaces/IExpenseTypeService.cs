@@ -18,6 +18,8 @@ namespace MoneyManager.Repositories.Services.Interfaces
         Task RemoveExpenseTypeViewModelAsync(ExpenseTypeViewModel entity);
         Task UpdateExpenseTypeViewModelAsync(ExpenseTypeViewModel entity);
 
+        Task<IEnumerable<ExpenseType>> SearchExpenseTypeAsync(string searchString);
+
         Task<IEnumerable<SelectListItem>> GetExpenseTypesSelectListItemAsync();
     }
 }

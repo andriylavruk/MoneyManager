@@ -23,9 +23,11 @@ namespace MoneyManager.Controllers
         {
             var statistics = new StatisticsViewModel
             {
-                StatisticsItemsViewModelsCollection = await _statisticsService.GetAllStatisticsItemsAsync(),
                 TotalExpense = await _statisticsService.GetTotalExpenseAsync(),
-                CurrentMonthExpense = await _statisticsService.GetCurrentMonthExpenseAsync()
+                CurrentYearExpense = await _statisticsService.GetCurrentYearExpenseAsync(),
+                CurrentMonthExpense = await _statisticsService.GetCurrentMonthExpenseAsync(),
+                CurrentWeekExpense = await _statisticsService.GetCurrentWeekExpenseAsync(),
+                ExpenseByExpenseType = await _statisticsService.GetExpenseByExpenseType()
             };
 
             return View(statistics);

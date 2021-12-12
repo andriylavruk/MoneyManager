@@ -6,12 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoneyManager.Data;
-using MoneyManager.Repositories;
-using MoneyManager.Repositories.Interfaces;
-using MoneyManager.Repositories.Services;
-using MoneyManager.Repositories.Services.Interfaces;
-using MoneyManager.Services;
-using MoneyManager.Services.Interfaces;
+using MoneyManager.Extensions;
 
 namespace MoneyManager
 {
@@ -30,13 +25,7 @@ namespace MoneyManager
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<IdentityApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IExpenseTypeRepository, ExpenseTypeRepository>();
-            services.AddScoped<IExpenseTypeService, ExpenseTypeService>();
-
-            services.AddScoped<IExpenseRepository, ExpenseRepository>();
-            services.AddScoped<IExpenseService, ExpenseService>();
-
-            services.AddScoped<IStatisticsService, StatisticsService>();
+            services.AddApplicationServices(Configuration);
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityApplicationDbContext>();
 

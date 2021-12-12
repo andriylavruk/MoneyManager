@@ -25,14 +25,14 @@ namespace MoneyManager.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
-        async Task<ExpenseType> IExpenseTypeRepository.GetByIdAsync(int? id)
+        public async Task<ExpenseType> GetByIdAsync(int? id)
         {
             return await _dbContext.ExpenseTypes.
                 Where(x => x.Id == id).
                 FirstOrDefaultAsync();
         }
 
-        async Task<IEnumerable<ExpenseType>> IExpenseTypeRepository.GetAllAsync()
+        public async Task<IEnumerable<ExpenseType>> GetAllAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -41,12 +41,12 @@ namespace MoneyManager.Repositories
                 ToListAsync();
         }
 
-        async Task<IEnumerable<ExpenseType>> IExpenseTypeRepository.FindAsync(Expression<Func<ExpenseType, bool>> predicate)
+        public async Task<IEnumerable<ExpenseType>> FindAsync(Expression<Func<ExpenseType, bool>> predicate)
         {
             return await _dbContext.Set<ExpenseType>().Where(predicate).ToListAsync();
         }
 
-        async Task IExpenseTypeRepository.AddAsync(ExpenseType entity)
+        public async Task AddAsync(ExpenseType entity)
         {
             entity.UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -55,7 +55,7 @@ namespace MoneyManager.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        async Task IExpenseTypeRepository.RemoveAsync(ExpenseType entity)
+        public async Task RemoveAsync(ExpenseType entity)
         {
             if (entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
@@ -64,7 +64,7 @@ namespace MoneyManager.Repositories
             }
         }
 
-        async Task IExpenseTypeRepository.UpdateAsync(ExpenseType entity)
+        public async Task UpdateAsync(ExpenseType entity)
         {
             if (entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
@@ -73,7 +73,14 @@ namespace MoneyManager.Repositories
             }
         }
 
-        async Task<IEnumerable<SelectListItem>> IExpenseTypeRepository.GetExpenseTypesSelectListItemAsync()
+        public async Task<IEnumerable<ExpenseType>> SearchAsync(string searchString)
+        {
+            var expenseTypes = await GetAllAsync();
+
+            return expenseTypes.Where(s => (s.Name.Contains(searchString)));
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetExpenseTypesSelectListItemAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 

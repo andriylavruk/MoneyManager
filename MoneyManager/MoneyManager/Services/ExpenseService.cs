@@ -21,22 +21,22 @@ namespace MoneyManager.Repositories.Services
             _expenseTypeRepository = expenseTypeRepository;
         }
 
-        async Task<ExpenseViewModel> IExpenseService.GetExpenseViewModelByIdAsync(int? id)
+        public async Task<ExpenseViewModel> GetExpenseViewModelByIdAsync(int? id)
         {
             return new ExpenseViewModel(await _expenseRepository.GetByIdAsync(id));
         }
 
-        async Task<IEnumerable<Expense>> IExpenseService.GetAllExpensesAsync()
+        public async Task<IEnumerable<Expense>> GetAllExpensesAsync()
         {
             return await _expenseRepository.GetAllAsync();
         }
 
-        async Task<IEnumerable<Expense>> IExpenseService.FindExpenseAsync(Expression<Func<Expense, bool>> predicate)
+        public async Task<IEnumerable<Expense>> FindExpenseAsync(Expression<Func<Expense, bool>> predicate)
         {
             return await _expenseRepository.FindAsync(predicate);
         }
 
-        async Task IExpenseService.AddExpenseViewModelAsync(ExpenseViewModel entity)
+        public async Task AddExpenseViewModelAsync(ExpenseViewModel entity)
         {
             if (entity != null)
             {
@@ -53,7 +53,7 @@ namespace MoneyManager.Repositories.Services
             }
         }
 
-        async Task IExpenseService.RemoveExpenseViewModelAsync(ExpenseViewModel entity)
+        public async Task RemoveExpenseViewModelAsync(ExpenseViewModel entity)
         {
             if (entity != null)
             {
@@ -61,7 +61,7 @@ namespace MoneyManager.Repositories.Services
             }
         }
 
-        async Task IExpenseService.UpdateExpenseViewModelAsync(ExpenseViewModel entity)
+        public async Task UpdateExpenseViewModelAsync(ExpenseViewModel entity)
         {
             if (entity != null)
             {
@@ -73,6 +73,11 @@ namespace MoneyManager.Repositories.Services
 
                 await _expenseRepository.UpdateAsync(expense);
             }
+        }
+
+        public async Task<IEnumerable<Expense>> SearchExpenseAsync(string searchString)
+        {
+            return await _expenseRepository.SearchAsync(searchString);
         }
     }
 }

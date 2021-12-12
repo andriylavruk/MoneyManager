@@ -16,7 +16,7 @@ namespace MoneyManager.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("MoneyManager.Models.Expense", b =>
@@ -26,8 +26,8 @@ namespace MoneyManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
@@ -71,6 +71,58 @@ namespace MoneyManager.Migrations
                     b.ToTable("ExpenseTypes");
                 });
 
+            modelBuilder.Entity("MoneyManager.Models.Income", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("IncomeTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IncomeTypeId");
+
+                    b.ToTable("Incomes");
+                });
+
+            modelBuilder.Entity("MoneyManager.Models.IncomeType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IncomeTypes");
+                });
+
             modelBuilder.Entity("MoneyManager.Models.Expense", b =>
                 {
                     b.HasOne("MoneyManager.Models.ExpenseType", "ExpenseType")
@@ -80,6 +132,17 @@ namespace MoneyManager.Migrations
                         .IsRequired();
 
                     b.Navigation("ExpenseType");
+                });
+
+            modelBuilder.Entity("MoneyManager.Models.Income", b =>
+                {
+                    b.HasOne("MoneyManager.Models.IncomeType", "IncomeType")
+                        .WithMany()
+                        .HasForeignKey("IncomeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IncomeType");
                 });
 #pragma warning restore 612, 618
         }

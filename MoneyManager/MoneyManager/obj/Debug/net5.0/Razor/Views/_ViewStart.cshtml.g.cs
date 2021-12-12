@@ -28,13 +28,20 @@ using MoneyManager.Models;
 #nullable disable
 #nullable restore
 #line 3 "D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\Views\_ViewImports.cshtml"
+using MoneyManager.Helpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\Views\_ViewImports.cshtml"
 using MoneyManager.Models.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ac1d4269d2158993a5be3df9711e805360e3dc3c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c1ce498abc2d3cbe5bbe3fa2079a1769b1b102d", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

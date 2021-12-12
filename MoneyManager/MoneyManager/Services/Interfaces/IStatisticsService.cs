@@ -8,10 +8,11 @@ namespace MoneyManager.Services.Interfaces
 {
     public interface IStatisticsService
     {
-        Task<List<StatisticsItemsViewModel>> GetAllStatisticsItemsAsync();
+        Task<int> GetTotalExpenseAsync();
+        Task<int> GetCurrentYearExpenseAsync();
+        Task<int> GetCurrentMonthExpenseAsync();
+        Task<int> GetCurrentWeekExpenseAsync();
 
-        Task<decimal> GetTotalExpenseAsync();
-        Task<decimal> GetCurrentMonthExpenseAsync();
-        //Task<Dictionary<string, decimal>> GetTotalExpenseByExpenseTypeAsync();
+        Task<IEnumerable<Tuple<string, int>>> GetExpenseByExpenseType();
     }
 }

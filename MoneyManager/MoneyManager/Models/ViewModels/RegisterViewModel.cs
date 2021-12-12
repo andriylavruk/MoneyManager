@@ -4,10 +4,11 @@ namespace MoneyManager.Models.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Обов'язкове поле")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Обов'язкове поле")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

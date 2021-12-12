@@ -19,22 +19,22 @@ namespace MoneyManager.Repositories.Services
             _repository = repository;
         }
 
-        async Task<ExpenseTypeViewModel> IExpenseTypeService.GetExpenseTypeViewModelByIdAsync(int? id)
+        public async Task<ExpenseTypeViewModel> GetExpenseTypeViewModelByIdAsync(int? id)
         {
             return new ExpenseTypeViewModel(await _repository.GetByIdAsync(id));
         }
 
-        async Task<IEnumerable<ExpenseType>> IExpenseTypeService.GetAllExpenseTypesAsync()
+        public async Task<IEnumerable<ExpenseType>> GetAllExpenseTypesAsync()
         {
             return await _repository.GetAllAsync();
         }
 
-        async Task<IEnumerable<ExpenseType>> IExpenseTypeService.FindExpenseTypeAsync(Expression<Func<ExpenseType, bool>> predicate)
+        public async Task<IEnumerable<ExpenseType>> FindExpenseTypeAsync(Expression<Func<ExpenseType, bool>> predicate)
         {
             return await _repository.FindAsync(predicate);
         }
 
-        async Task IExpenseTypeService.AddExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
+        public async Task AddExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
         {
             if (entity != null)
             {
@@ -47,7 +47,7 @@ namespace MoneyManager.Repositories.Services
             }
         }
 
-        async Task IExpenseTypeService.RemoveExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
+        public async Task RemoveExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
         {
             if (entity != null)
             {
@@ -55,7 +55,7 @@ namespace MoneyManager.Repositories.Services
             }
         }
 
-        async Task IExpenseTypeService.UpdateExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
+        public async Task UpdateExpenseTypeViewModelAsync(ExpenseTypeViewModel entity)
         {
             if (entity != null)
             {
@@ -67,7 +67,12 @@ namespace MoneyManager.Repositories.Services
             }
         }
 
-        async Task<IEnumerable<SelectListItem>> IExpenseTypeService.GetExpenseTypesSelectListItemAsync()
+        public async Task<IEnumerable<ExpenseType>> SearchExpenseTypeAsync(string searchString)
+        {
+            return await _repository.SearchAsync(searchString);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetExpenseTypesSelectListItemAsync()
         {
             return await _repository.GetExpenseTypesSelectListItemAsync();
         }

@@ -1,59 +1,168 @@
-﻿@model IEnumerable<MoneyManager.Models.Expense>
+﻿@model PaginatedList<MoneyManager.Models.Expense>
 
-<div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Список витрат</h2>
-        </div>
-        <div class="col-6 text-right">
-            <a asp-controller="Expense" asp-action="Create" class="btn btn-primary">Додати витрату</a>
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card shadow-lg" style="border-radius: 1rem;">
+                <div class="card-body p-5">
+                    <div class="row pt-4">
+                        <div class="col-6">
+                            <h2 class="text-primary">Список витрат</h2>
+                        </div>
+                        <div class="col-6 text-right">
+                            <div class="row">
+                                <div class="col">
+                                    <a asp-controller="Expense" asp-action="Create" class="btn btn-primary d-flex align-content-center">
+                                        <div class="mdi mdi-plus-box-outline"></div>
+                                        <div class="d-none d-md-block">Додати витрату</div>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a asp-controller="ExpenseType" asp-action="Index" class="btn btn-info d-flex align-content-center">
+                                        <div class="mdi mdi-clipboard-outline"></div>
+                                        <div class="d-none d-md-block">Список категорій витрат</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    @if (Model.Count() > 0)
+                    {
+                        <form asp-action="Index" method="get">
+                            <div class="form-actions no-color">
+                                <div class="container">
+                                    <div class="row align-items-center">
+                                        <input type="text" name="SearchString" placeholder="Знайти" value="@ViewData["CurrentFilter"]" />
+                                        <input type="submit" value="Пошук" class="btn btn-default" />
+                                        <a asp-action="Index">Повернути весь список</a>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </form>
+
+                        <table class="table table-bordered table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <a class="mdi mdi-sort-ascending" asp-action="Index" asp-route-sortOrder="@ViewData["ExpenseTypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Тип</a>
+                                    </th>
+                                    <th>
+                                        Опис
+                                    </th>
+                                    <th>
+                                        <a class="mdi mdi-numeric-1-box-multiple-outline" asp-action="Index" asp-route-sortOrder="@ViewData["AmountSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сума</a>
+                                    </th>
+                                    <th>
+                                        <a class="mdi mdi-calendar-export" asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Дата</a>
+                                    </th>
+                                    <th>
+                                        Опції
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var expense in Model)
+                                {
+                                    <tr>
+                                        <td width="20%">@expense.ExpenseType.Name</td>
+                                        <td width="25%">@expense.Description</td>
+                                        <td width="10%">@expense.Amount.ToString("0")</td>
+                                        <td width="10%">@expense.DateCreated.ToShortDateString()</td>
+                                        <td width="35%">
+                                            <div class="btn-group" role="group">
+                                                <div class="row">
+                                                    <div class="col m-1">
+                                                        <button type="button" class="btn btn-warning mx-1" asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="mdi mdi-pencil"></div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="d-none d-md-block">Редагувати</div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col m-1">
+                                                        <button type="button" class="btn btn-danger mx-1" asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="mdi mdi-minus-box-outline"></div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="d-none d-md-block">Видалити</div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+                        <div class="row justify-content-center">
+                            <div class="row">
+                                <div class="col">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.FirstPage)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-outline-dark d-flex align-content-center @prevDisabled">
+                                        <div class="mdi mdi-chevron-triple-left"></div>
+                                        <div class="d-none d-md-block">Перша</div>
+                                    </a>
+                                </div>
+
+                                <div class="col">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-outline-dark d-flex align-content-center @prevDisabled">
+                                        <div class="mdi mdi-chevron-left"></div>
+                                        <div class="d-none d-md-block">Попередня</div>
+                                    </a>
+                                </div>
+
+                                <div class="col">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-outline-dark d-flex align-content-center @nextDisabled">
+                                        <div class="d-none d-md-block">Наступна</div>
+                                        <div class="mdi mdi-chevron-right"></div>
+                                    </a>
+                                </div>
+
+                                <div class="col">
+                                    <a asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageNumber="@(Model.LastPage)"
+                                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                       class="btn btn-outline-dark d-flex align-content-center @nextDisabled">
+                                        <div class="d-none d-md-block">Остання</div>
+                                        <div class="mdi mdi-chevron-triple-right"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Не знайдено ніяких витрат</p>
+                    }
+                </div>
+            </div>
         </div>
     </div>
-    <br />
-
-    @if (Model.Count() > 0)
-    {
-        <table class="table table-bordered table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th>
-                        Категорія витрати
-                    </th>
-                    <th>
-                        Опис
-                    </th>
-                    <th>
-                        Витрати(грн.)
-                    </th>
-                    <th>
-                        Дата
-                    </th>
-                    <th>
-                        Опції
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var expense in Model)
-                {
-                <tr>
-                    <td width="25%">@expense.ExpenseType.Name</td>
-                    <td width="35%">@expense.Description</td>
-                    <td width="10%">@expense.Amount</td>
-                    <td width="10%">@expense.DateCreated.ToShortDateString()</td>
-                    <td width="20%">
-                        <div class="w-100 btn-group" role="group">
-                            <a class="btn btn-primary mx-1" asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id">Оновити</a>
-                            <a class="btn btn-danger mx-1" asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id">Видалити</a>
-                        </div>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>Не знайдено ніяких витрат</p>
-    }
 </div>

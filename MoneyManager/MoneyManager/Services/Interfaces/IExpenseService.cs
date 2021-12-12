@@ -2,6 +2,7 @@
 using MoneyManager.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@ namespace MoneyManager.Repositories.Services.Interfaces
         Task AddExpenseViewModelAsync(ExpenseViewModel entity);
         Task RemoveExpenseViewModelAsync(ExpenseViewModel entity);
         Task UpdateExpenseViewModelAsync(ExpenseViewModel entity);
+
+        Task<IEnumerable<Expense>> SearchExpenseAsync(string searchString);
     }
 }

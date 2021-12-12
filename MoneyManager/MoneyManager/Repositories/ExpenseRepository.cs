@@ -24,7 +24,7 @@ namespace MoneyManager.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
-        async Task<Expense> IExpenseRepository.GetByIdAsync(int? id)
+        public async Task<Expense> GetByIdAsync(int? id)
         {
             return await _dbContext.Expenses.
                 Include(x => x.ExpenseType).
@@ -32,7 +32,7 @@ namespace MoneyManager.Repositories
                 FirstOrDefaultAsync();
         }
 
-        async Task<IEnumerable<Expense>> IExpenseRepository.GetAllAsync()
+        public async Task<IEnumerable<Expense>> GetAllAsync()
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -42,12 +42,12 @@ namespace MoneyManager.Repositories
                 ToListAsync();
         }
 
-        async Task<IEnumerable<Expense>> IExpenseRepository.FindAsync(Expression<Func<Expense, bool>> predicate)
+        public async Task<IEnumerable<Expense>> FindAsync(Expression<Func<Expense, bool>> predicate)
         {
             return await _dbContext.Set<Expense>().Where(predicate).ToListAsync();
         }
 
-        async Task IExpenseRepository.AddAsync(Expense entity)
+        public async Task AddAsync(Expense entity)
         {
             entity.UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -55,7 +55,7 @@ namespace MoneyManager.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        async Task IExpenseRepository.RemoveAsync(Expense entity)
+        public async Task RemoveAsync(Expense entity)
         {
             if(entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
@@ -64,13 +64,24 @@ namespace MoneyManager.Repositories
             }
         }
 
-        async Task IExpenseRepository.UpdateAsync(Expense entity)
+        public async Task UpdateAsync(Expense entity)
         {
             if (entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Expense>> SearchAsync(string searchString)
+        {
+            var expenses = await GetAllAsync();
+
+            return expenses.Where(s => !String.IsNullOrEmpty(s.Description)
+                          && (s.ExpenseType.Name.ToString().Contains(searchString)
+                           || s.Description.Contains(searchString)
+                           || s.DateCreated.ToShortDateString().Contains(searchString)
+                           || s.Amount.ToString().Contains(searchString)));
         }
     }
 }

@@ -8,9 +8,10 @@ namespace MoneyManager.Models.ViewModels
 {
     public class StatisticsViewModel
     {
-        public IEnumerable<StatisticsItemsViewModel> StatisticsItemsViewModelsCollection { get; set; }
-
-        public decimal TotalExpense { get; set; }
-        public decimal CurrentMonthExpense { get; set; }
+        public int TotalExpense { get; set; }
+        public int CurrentYearExpense { get; set; }
+        public int CurrentMonthExpense { get; set; }
+        public int CurrentWeekExpense { get; set; }
+        public IEnumerable<Tuple<string, int>> ExpenseByExpenseType { get; set; }
     }
 }

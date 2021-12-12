@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoneyManager.Helpers;
 using MoneyManager.Models;
 using MoneyManager.Models.ViewModels;
 using MoneyManager.Repositories.Services.Interfaces;
@@ -22,9 +23,55 @@ namespace MoneyManager.Controllers
             _expenseTypeService = expenseTypeService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            return View(await _expenseService.GetAllExpensesAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "date" : "";
+            ViewBag.AmountSortParm = sortOrder == "amount" ? "amount_desc" : "amount";
+            ViewBag.ExpenseTypeSortParm = sortOrder == "expenseType" ? "expenseType_desc" : "expenseType";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var expenses = await _expenseService.GetAllExpensesAsync();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                expenses = await _expenseService.SearchExpenseAsync(searchString);
+            }
+
+            switch (sortOrder)
+            {
+                case "date":
+                    expenses = expenses.OrderBy(s => s.DateCreated);
+                    break;
+                case "amount":
+                    expenses = expenses.OrderBy(s => s.Amount);
+                    break;
+                case "amount_desc":
+                    expenses = expenses.OrderByDescending(s => s.Amount);
+                    break;
+                case "expenseType":
+                    expenses = expenses.OrderBy(s => s.ExpenseType.Name);
+                    break;
+                case "expenseType_desc":
+                    expenses = expenses.OrderByDescending(s => s.ExpenseType.Name);
+                    break;
+                default:
+                    expenses = expenses.OrderByDescending(s => s.DateCreated);
+                    break;
+            }
+
+            int pageSize = 8;
+            return View(await PaginatedList<Expense>.CreateAsync(expenses, pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

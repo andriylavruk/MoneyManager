@@ -6,6 +6,9 @@ using MoneyManager.Repositories.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoneyManager.Models.ViewModels;
+using System;
+using System.Linq;
+using MoneyManager.Helpers;
 
 namespace MoneyManager.Controllers
 {
@@ -19,10 +22,41 @@ namespace MoneyManager.Controllers
             _expenseTypeService = expenseTypeService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            IEnumerable<ExpenseType> expenseTypes = await _expenseTypeService.GetAllExpenseTypesAsync();
-            return View(expenseTypes);
+            ViewData["CurrentSort"] = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name" : "";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var expenseTypes = await _expenseTypeService.GetAllExpenseTypesAsync();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                expenseTypes = await _expenseTypeService.SearchExpenseTypeAsync(searchString);
+            }
+
+            switch (sortOrder)
+            {
+                case "name":
+                    expenseTypes = expenseTypes.OrderBy(s => s.Name);
+                    break;
+                default:
+                    expenseTypes = expenseTypes.OrderByDescending(s => s.Name);
+                    break;
+            }
+
+            int pageSize = 8;
+            return View(await PaginatedList<ExpenseType>.CreateAsync(expenseTypes, pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

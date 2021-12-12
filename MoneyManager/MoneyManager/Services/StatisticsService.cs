@@ -13,36 +13,35 @@ namespace MoneyManager.Services
     {
         private readonly IExpenseRepository _expenseRepository;
         private readonly IExpenseTypeRepository _expenseTypeRepository;
+        private readonly IIncomeRepository _incomeRepository;
+        private readonly IIncomeTypeRepository _incomeTypeRepository;
 
-        public StatisticsService(IExpenseRepository expenseRepository, IExpenseTypeRepository expenseTypeRepository)
+        public StatisticsService(IExpenseRepository expenseRepository, IExpenseTypeRepository expenseTypeRepository, 
+            IIncomeRepository incomeRepository, IIncomeTypeRepository incomeTypeRepository)
         {
             _expenseRepository = expenseRepository;
             _expenseTypeRepository = expenseTypeRepository;
+            _incomeRepository = incomeRepository;
+            _incomeTypeRepository = incomeTypeRepository;
         }
 
-        public async Task<List<StatisticsItemsViewModel>> GetAllStatisticsItemsAsync()
-        {
-            var allExpenses = await _expenseRepository.GetAllAsync();
-            var allItems = new List<StatisticsItemsViewModel>();
-
-            foreach (var item in allExpenses)
-            {
-                allItems.Add(new StatisticsItemsViewModel(item));
-            }
-
-            var result = allItems.OrderBy(x => x.DateCreated);
-
-            return result.ToList();
-        }
-
-        public async Task<decimal> GetTotalExpenseAsync()
+        public async Task<int> GetTotalExpenseAsync()
         {
             var allExpenses = await _expenseRepository.GetAllAsync();
 
             return allExpenses.Sum(x => x.Amount);
         }
 
-        public async Task<decimal> GetCurrentMonthExpenseAsync()
+        public async Task<int> GetCurrentYearExpenseAsync()
+        {
+            var allExpenses = await _expenseRepository.GetAllAsync();
+
+            return allExpenses
+                .Where(x => x.DateCreated.Year == DateTime.Now.Year)
+                .Sum(x => x.Amount);
+        }
+
+        public async Task<int> GetCurrentMonthExpenseAsync()
         {
             var allExpenses = await _expenseRepository.GetAllAsync();
 
@@ -51,24 +50,38 @@ namespace MoneyManager.Services
                 .Sum(x => x.Amount);
         }
 
-        /*public async Task<Dictionary<string, decimal>> GetTotalExpenseByExpenseTypeAsync()
+        public async Task<int> GetCurrentWeekExpenseAsync()
         {
-            var expenseTypes = await _expenseTypeRepository.GetAllAsync();
+            var currentStartDayOfWeek = DateTime.Today.AddDays(DayOfWeek.Monday - DateTime.Today.DayOfWeek);
+            var allExpenses = await _expenseRepository.GetAllAsync();
 
-            Dictionary<string, decimal> result = null;
+            return allExpenses
+                .Where(x => x.DateCreated >= currentStartDayOfWeek 
+                    && x.DateCreated <= currentStartDayOfWeek.AddDays(7))
+                .Sum(x => x.Amount);
+        }
 
-            for (int i = 0; i < expenseTypes.Count(); i++)
+        public async Task<IEnumerable<Tuple<string, int>>> GetExpenseByExpenseType()
+        {
+            var expenses = await _expenseRepository.GetAllAsync();
+
+            var result = expenses
+                     .Where(z => z.DateCreated.Month == DateTime.Now.Month)
+                     .GroupBy(y => y.ExpenseType.Name)
+                     .Select(x => new
+                     {
+                         Name = x.Key,
+                         Sum = x.Sum(s => s.Amount)
+                     });
+
+            var tuples = new List<Tuple<string, int>>();
+
+            foreach(var item in result)
             {
-                result.Add(expenseTypes.ToString(), );
+                tuples.Add(new Tuple<string, int>(item.Name, item.Sum));
             }
 
-            foreach(var i in expenseTypes)
-            {
-                result.Add(i, await _expenseRepository.FindAsync(x => x.ExpenseType.Name == i.Name));
-            }
-            //var result = expenseTypes.ToDictionary(k => k, v => );
-
-            throw new NotImplementedException();
-        }*/
+            return tuples;
+        }
     }
 }
