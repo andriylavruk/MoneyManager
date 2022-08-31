@@ -362,7 +362,6 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\MoneyManager.runtimeconfig.json
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\MoneyManager.runtimeconfig.dev.json
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\MoneyManager.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\ref\MoneyManager.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\MoneyManager.pdb
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -676,7 +675,6 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.csprojAssemblyReference.cache
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.GeneratedMSBuildEditorConfig.editorconfig
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.AssemblyInfoInputs.cache
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.AssemblyInfo.cs
@@ -686,7 +684,6 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.RazorAssemblyInfo.cache
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.RazorAssemblyInfo.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\staticwebassets\MoneyManager.StaticWebAssets.Manifest.cache
-D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\staticwebassets\MoneyManager.StaticWebAssets.xml
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\scopedcss\bundle\MoneyManager.styles.css
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.TagHelpers.input.cache
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.TagHelpers.output.cache
@@ -806,3 +803,5 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Income\Delete.cshtml.g.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Income\Index.cshtml.g.cs
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\Razor\Views\Income\Update.cshtml.g.cs
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\MoneyManager.csproj.AssemblyReference.cache
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net5.0\refint\MoneyManager.dll

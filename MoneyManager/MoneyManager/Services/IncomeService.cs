@@ -2,82 +2,77 @@
 using MoneyManager.Models.ViewModels;
 using MoneyManager.Repositories.Interfaces;
 using MoneyManager.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-namespace MoneyManager.Services
+namespace MoneyManager.Services;
+
+public class IncomeService : IIncomeService
 {
-    public class IncomeService : IIncomeService
+    protected readonly IIncomeRepository _incomeRepository;
+    protected readonly IIncomeTypeRepository _incomeTypeRepository;
+
+    public IncomeService(IIncomeRepository incomeRepository, IIncomeTypeRepository incomeTypeRepository)
     {
-        protected readonly IIncomeRepository _incomeRepository;
-        protected readonly IIncomeTypeRepository _incomeTypeRepository;
+        _incomeRepository = incomeRepository;
+        _incomeTypeRepository = incomeTypeRepository;
+    }
 
-        public IncomeService(IIncomeRepository incomeRepository, IIncomeTypeRepository incomeTypeRepository)
-        {
-            _incomeRepository = incomeRepository;
-            _incomeTypeRepository = incomeTypeRepository;
-        }
+    public async Task<IncomeViewModel> GetIncomeViewModelByIdAsync(int? id)
+    {
+        return new IncomeViewModel(await _incomeRepository.GetByIdAsync(id));
+    }
 
-        public async Task<IncomeViewModel> GetIncomeViewModelByIdAsync(int? id)
-        {
-            return new IncomeViewModel(await _incomeRepository.GetByIdAsync(id));
-        }
+    public async Task<IEnumerable<Income>> GetAllIncomesAsync()
+    {
+        return await _incomeRepository.GetAllAsync();
+    }
 
-        public async Task<IEnumerable<Income>> GetAllIncomesAsync()
-        {
-            return await _incomeRepository.GetAllAsync();
-        }
+    public async Task<IEnumerable<Income>> FindIncomeAsync(Expression<Func<Income, bool>> predicate)
+    {
+        return await _incomeRepository.FindAsync(predicate);
+    }
 
-        public async Task<IEnumerable<Income>> FindIncomeAsync(Expression<Func<Income, bool>> predicate)
+    public async Task AddIncomeViewModelAsync(IncomeViewModel entity)
+    {
+        if (entity != null)
         {
-            return await _incomeRepository.FindAsync(predicate);
-        }
-
-        public async Task AddIncomeViewModelAsync(IncomeViewModel entity)
-        {
-            if (entity != null)
+            var income = new Income
             {
-                var income = new Income
-                {
-                    Id = entity.Id,
-                    Description = entity.Description,
-                    Amount = entity.Amount,
-                    DateCreated = entity.DateCreated,
-                    IncomeTypeId = entity.IncomeTypeId
-                };
+                Id = entity.Id,
+                Description = entity.Description,
+                Amount = entity.Amount,
+                DateCreated = entity.DateCreated,
+                IncomeTypeId = entity.IncomeTypeId
+            };
 
-                await _incomeRepository.AddAsync(income);
-            }
+            await _incomeRepository.AddAsync(income);
         }
+    }
 
-        public async Task RemoveIncomeViewModelAsync(IncomeViewModel entity)
+    public async Task RemoveIncomeViewModelAsync(IncomeViewModel entity)
+    {
+        if (entity != null)
         {
-            if (entity != null)
-            {
-                await _incomeRepository.RemoveAsync(await _incomeRepository.GetByIdAsync(entity.Id));
-            }
+            await _incomeRepository.RemoveAsync(await _incomeRepository.GetByIdAsync(entity.Id));
         }
+    }
 
-        public async Task UpdateIncomeViewModelAsync(IncomeViewModel entity)
+    public async Task UpdateIncomeViewModelAsync(IncomeViewModel entity)
+    {
+        if (entity != null)
         {
-            if (entity != null)
-            {
-                var income = await _incomeRepository.GetByIdAsync(entity.Id);
+            var income = await _incomeRepository.GetByIdAsync(entity.Id);
 
-                income.Description = entity.Description;
-                income.IncomeTypeId = entity.IncomeTypeId;
-                income.Amount = entity.Amount;
+            income.Description = entity.Description;
+            income.IncomeTypeId = entity.IncomeTypeId;
+            income.Amount = entity.Amount;
 
-                await _incomeRepository.UpdateAsync(income);
-            }
+            await _incomeRepository.UpdateAsync(income);
         }
+    }
 
-        public async Task<IEnumerable<Income>> SearchIncomeAsync(string searchString)
-        {
-            return await _incomeRepository.SearchAsync(searchString);
-        }
+    public async Task<IEnumerable<Income>> SearchIncomeAsync(string searchString)
+    {
+        return await _incomeRepository.SearchAsync(searchString);
     }
 }

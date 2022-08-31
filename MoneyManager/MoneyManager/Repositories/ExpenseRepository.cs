@@ -2,86 +2,79 @@
 using MoneyManager.Data;
 using MoneyManager.Models;
 using MoneyManager.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace MoneyManager.Repositories
+namespace MoneyManager.Repositories;
+
+public class ExpenseRepository : IExpenseRepository
 {
-    public class ExpenseRepository : IExpenseRepository
+    protected readonly ApplicationDbContext _dbContext;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public ExpenseRepository(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
     {
-        protected readonly ApplicationDbContext _dbContext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        _dbContext = dbContext;
+        _httpContextAccessor = httpContextAccessor;
+    }
 
-        public ExpenseRepository(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
+    public async Task<Expense> GetByIdAsync(int? id)
+    {
+        return await _dbContext.Expenses.
+            Include(x => x.ExpenseType).
+            Where(x => x.Id == id).
+            FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<Expense>> GetAllAsync()
+    {
+        var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        return await _dbContext.Expenses.
+            Include(x => x.ExpenseType).
+            Where(x => x.UserId == userId).
+            ToListAsync();
+    }
+
+    public async Task<IEnumerable<Expense>> FindAsync(Expression<Func<Expense, bool>> predicate)
+    {
+        return await _dbContext.Set<Expense>().Where(predicate).ToListAsync();
+    }
+
+    public async Task AddAsync(Expense entity)
+    {
+        entity.UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        await _dbContext.Expenses.AddAsync(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task RemoveAsync(Expense entity)
+    {
+        if(entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
         {
-            _dbContext = dbContext;
-            _httpContextAccessor = httpContextAccessor;
-        }
-
-        public async Task<Expense> GetByIdAsync(int? id)
-        {
-            return await _dbContext.Expenses.
-                Include(x => x.ExpenseType).
-                Where(x => x.Id == id).
-                FirstOrDefaultAsync();
-        }
-
-        public async Task<IEnumerable<Expense>> GetAllAsync()
-        {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            return await _dbContext.Expenses.
-                Include(x => x.ExpenseType).
-                Where(x => x.UserId == userId).
-                ToListAsync();
-        }
-
-        public async Task<IEnumerable<Expense>> FindAsync(Expression<Func<Expense, bool>> predicate)
-        {
-            return await _dbContext.Set<Expense>().Where(predicate).ToListAsync();
-        }
-
-        public async Task AddAsync(Expense entity)
-        {
-            entity.UserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            await _dbContext.Expenses.AddAsync(entity);
+            _dbContext.Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+    }
 
-        public async Task RemoveAsync(Expense entity)
+    public async Task UpdateAsync(Expense entity)
+    {
+        if (entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
         {
-            if(entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
-            {
-                _dbContext.Remove(entity);
-                await _dbContext.SaveChangesAsync();
-            }
+            _dbContext.Update(entity);
+            await _dbContext.SaveChangesAsync();
         }
+    }
 
-        public async Task UpdateAsync(Expense entity)
-        {
-            if (entity.UserId == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier))
-            {
-                _dbContext.Update(entity);
-                await _dbContext.SaveChangesAsync();
-            }
-        }
+    public async Task<IEnumerable<Expense>> SearchAsync(string searchString)
+    {
+        var expenses = await GetAllAsync();
 
-        public async Task<IEnumerable<Expense>> SearchAsync(string searchString)
-        {
-            var expenses = await GetAllAsync();
-
-            return expenses.Where(s => !String.IsNullOrEmpty(s.Description)
-                          && (s.ExpenseType.Name.ToString().Contains(searchString)
-                           || s.Description.Contains(searchString)
-                           || s.DateCreated.ToShortDateString().Contains(searchString)
-                           || s.Amount.ToString().Contains(searchString)));
-        }
+        return expenses.Where(s => !String.IsNullOrEmpty(s.Description)
+                      && (s.ExpenseType.Name.ToString().Contains(searchString)
+                       || s.Description.Contains(searchString)
+                       || s.DateCreated.ToShortDateString().Contains(searchString)
+                       || s.Amount.ToString().Contains(searchString)));
     }
 }

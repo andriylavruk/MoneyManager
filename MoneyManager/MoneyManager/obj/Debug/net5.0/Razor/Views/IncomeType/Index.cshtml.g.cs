@@ -42,7 +42,9 @@ using MoneyManager.Models.ViewModels;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e", @"/Views/IncomeType/Index.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c1ce498abc2d3cbe5bbe3fa2079a1769b1b102d", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_IncomeType_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PaginatedList<MoneyManager.Models.IncomeType>>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "IncomeType", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -95,7 +97,7 @@ using MoneyManager.Models.ViewModels;
                             <div class=""row"">
                                 <div class=""col"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e8340", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e8386", async() => {
                 WriteLiteral("\r\n                                        <div class=\"mdi mdi-plus-box-outline\"></div>\r\n                                        <div class=\"d-none d-md-block\">Додати категорію доходів</div>\r\n                                    ");
             }
             );
@@ -123,7 +125,7 @@ using MoneyManager.Models.ViewModels;
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e10522", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e10568", async() => {
                 WriteLiteral(@"
                             <div class=""form-actions no-color"">
                                 <div class=""container"">
@@ -139,7 +141,7 @@ WriteAttributeValue("", 1678, ViewData["CurrentFilter"], 1678, 26, false);
 #nullable disable
                 EndWriteAttribute();
                 WriteLiteral(" />\r\n                                        <input type=\"submit\" value=\"Пошук\" class=\"btn btn-default\" />\r\n                                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e11681", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e11727", async() => {
                     WriteLiteral("Повернути весь список");
                 }
                 );
@@ -174,7 +176,7 @@ WriteAttributeValue("", 1678, ViewData["CurrentFilter"], 1678, 26, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
             WriteLiteral("                        <table class=\"table table-bordered table-striped\" style=\"width:100%\">\r\n                            <thead>\r\n                                <tr>\r\n                                    <th>\r\n                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e14776", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e14822", async() => {
                 WriteLiteral("Назва");
             }
             );
@@ -247,7 +249,7 @@ WriteAttributeValue("", 1678, ViewData["CurrentFilter"], 1678, 26, false);
                                                 <div class=""row"">
                                                     <div class=""col"">
                                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e19470", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e19516", async() => {
                 WriteLiteral(@"
                                                             <div class=""mdi mdi-pencil""></div>
                                                             <div class=""d-none d-md-block"">Редагувати</div>
@@ -284,7 +286,7 @@ WriteAttributeValue("", 1678, ViewData["CurrentFilter"], 1678, 26, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                    </div>\r\n                                                    <div class=\"col\">\r\n                                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e22518", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e22564", async() => {
                 WriteLiteral(@"
                                                             <div class=""mdi mdi-minus-box-outline""></div>
                                                             <div class=""d-none d-md-block"">Видалити</div>
@@ -347,7 +349,7 @@ WriteAttributeValue("", 1678, ViewData["CurrentFilter"], 1678, 26, false);
 #line hidden
 #nullable disable
             WriteLiteral("                        <div class=\"row justify-content-center\">\r\n                            <div class=\"row\">\r\n                                <div class=\"col\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e26706", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e26752", async() => {
                 WriteLiteral("\r\n                                        <div class=\"mdi mdi-chevron-triple-left\"></div>\r\n                                        <div class=\"d-none d-md-block\">Перша</div>\r\n                                    ");
             }
             );
@@ -413,7 +415,7 @@ AddHtmlAttributeValue(" ", 5458, prevDisabled, 5459, 13, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n\r\n                                <div class=\"col\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e31715", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e31761", async() => {
                 WriteLiteral("\r\n                                        <div class=\"mdi mdi-chevron-left\"></div>\r\n                                        <div class=\"d-none d-md-block\">Попередня</div>\r\n                                    ");
             }
             );
@@ -479,7 +481,7 @@ AddHtmlAttributeValue(" ", 6203, prevDisabled, 6204, 13, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n\r\n                                <div class=\"col\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e36726", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e36772", async() => {
                 WriteLiteral("\r\n                                        <div class=\"d-none d-md-block\">Наступна</div>\r\n                                        <div class=\"mdi mdi-chevron-right\"></div>\r\n                                    ");
             }
             );
@@ -545,7 +547,7 @@ AddHtmlAttributeValue(" ", 6945, nextDisabled, 6946, 13, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n\r\n                                <div class=\"col\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e41740", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b7a2f62b2c7a16adaa70eb194713a6bc82dc05e41786", async() => {
                 WriteLiteral("\r\n                                        <div class=\"d-none d-md-block\">Остання</div>\r\n                                        <div class=\"mdi mdi-chevron-triple-right\"></div>\r\n                                    ");
             }
             );
@@ -631,16 +633,26 @@ AddHtmlAttributeValue(" ", 7682, nextDisabled, 7683, 13, false);
             WriteLiteral("                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>");
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<PaginatedList<MoneyManager.Models.IncomeType>> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<PaginatedList<MoneyManager.Models.IncomeType>> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591
