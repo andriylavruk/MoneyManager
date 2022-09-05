@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Helpers;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.ExpenseViewModels;
+using MoneyManager.Models.ViewModels.IncomeViewModels;
 using MoneyManager.Services.Interfaces;
 
 namespace MoneyManager.Controllers;
@@ -106,6 +107,12 @@ public class IncomeController : Controller
         }
 
         var incomeViewModel = await _incomeService.GetIncomeViewModelByIdAsync(id);
+
+        if (incomeViewModel == null)
+        {
+            return NotFound();
+        }
+
         incomeViewModel.TypeDropDown = await _incomeTypeService.GetIncomeTypesSelectListItemAsync();
 
         if (incomeViewModel == null)
@@ -145,6 +152,12 @@ public class IncomeController : Controller
         }
 
         var incomeViewModel = await _incomeService.GetIncomeViewModelByIdAsync(id);
+
+        if (incomeViewModel == null)
+        {
+            return NotFound();
+        }
+
         incomeViewModel.TypeDropDown = await _incomeTypeService.GetIncomeTypesSelectListItemAsync();
 
         if (incomeViewModel == null)
@@ -165,6 +178,9 @@ public class IncomeController : Controller
 
             return RedirectToAction("Index");
         }
+
+        incomeViewModel.TypeDropDown = await _incomeTypeService.GetIncomeTypesSelectListItemAsync();
+
         return View(incomeViewModel);
     }
 }

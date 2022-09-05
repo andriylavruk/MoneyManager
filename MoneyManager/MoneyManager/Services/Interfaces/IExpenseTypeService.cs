@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.ExpenseTypeViewModels;
 using System.Linq.Expressions;
 
-namespace MoneyManager.Repositories.Services.Interfaces;
+namespace MoneyManager.Services.Interfaces;
 
 public interface IExpenseTypeService
 {

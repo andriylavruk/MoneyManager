@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.IncomeTypeViewModels;
 using MoneyManager.Repositories.Interfaces;
 using MoneyManager.Services.Interfaces;
 using System.Linq.Expressions;
@@ -10,15 +11,20 @@ namespace MoneyManager.Services;
 public class IncomeTypeService : IIncomeTypeService
 {
     protected readonly IIncomeTypeRepository _repository;
+    private readonly IMapper _mapper;
 
-    public IncomeTypeService(IIncomeTypeRepository repository)
+    public IncomeTypeService(IIncomeTypeRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<IncomeTypeViewModel> GetIncomeTypeViewModelByIdAsync(int? id)
     {
-        return new IncomeTypeViewModel(await _repository.GetByIdAsync(id));
+        var incomeType = await _repository.GetByIdAsync(id);
+        var mappedIncomeType = _mapper.Map<IncomeTypeViewModel>(incomeType);
+
+        return mappedIncomeType;
     }
 
     public async Task<IEnumerable<IncomeType>> GetAllIncomeTypesAsync()
@@ -35,12 +41,9 @@ public class IncomeTypeService : IIncomeTypeService
     {
         if (entity != null)
         {
-            var expenseType = new IncomeType
-            {
-                Name = entity.Name
-            };
+            var mappedIncomeType = _mapper.Map<IncomeType>(entity);
 
-            await _repository.AddAsync(expenseType);
+            await _repository.AddAsync(mappedIncomeType);
         }
     }
 

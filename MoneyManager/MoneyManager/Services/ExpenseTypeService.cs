@@ -1,24 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.ExpenseTypeViewModels;
+using MoneyManager.Models.ViewModels.ExpenseViewModels;
+using MoneyManager.Repositories;
 using MoneyManager.Repositories.Interfaces;
-using MoneyManager.Repositories.Services.Interfaces;
+using MoneyManager.Services.Interfaces;
 using System.Linq.Expressions;
 
-namespace MoneyManager.Repositories.Services;
+namespace MoneyManager.Services;
 
 public class ExpenseTypeService : IExpenseTypeService
 {
     protected readonly IExpenseTypeRepository _repository;
+    private readonly IMapper _mapper;
 
-    public ExpenseTypeService(IExpenseTypeRepository repository)
+    public ExpenseTypeService(IExpenseTypeRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<ExpenseTypeViewModel> GetExpenseTypeViewModelByIdAsync(int? id)
     {
-        return new ExpenseTypeViewModel(await _repository.GetByIdAsync(id));
+        /*return new ExpenseTypeViewModel(await _repository.GetByIdAsync(id));*/
+
+        var expenseType = await _repository.GetByIdAsync(id);
+        var mappedEpenseType = _mapper.Map<ExpenseTypeViewModel>(expenseType);
+
+        return mappedEpenseType;
     }
 
     public async Task<IEnumerable<ExpenseType>> GetAllExpenseTypesAsync()
@@ -35,12 +45,9 @@ public class ExpenseTypeService : IExpenseTypeService
     {
         if (entity != null)
         {
-            var expenseType = new ExpenseType
-            {
-                Name = entity.Name
-            };
+            var mappedExpenseType = _mapper.Map<ExpenseType>(entity);
 
-            await _repository.AddAsync(expenseType);
+            await _repository.AddAsync(mappedExpenseType);
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.AccountViewModels;
 
 namespace MoneyManager.Controllers;
 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Helpers;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.IncomeTypeViewModels;
 using MoneyManager.Services.Interfaces;
 
 namespace MoneyManager.Controllers;

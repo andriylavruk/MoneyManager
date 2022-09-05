@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.IncomeTypeViewModels;
 using System.Linq.Expressions;
 
 namespace MoneyManager.Services.Interfaces;

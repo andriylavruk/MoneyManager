@@ -2,9 +2,9 @@
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Models;
-using MoneyManager.Repositories.Services.Interfaces;
-using MoneyManager.Models.ViewModels;
 using MoneyManager.Helpers;
+using MoneyManager.Services.Interfaces;
+using MoneyManager.Models.ViewModels.ExpenseTypeViewModels;
 
 namespace MoneyManager.Controllers;
 

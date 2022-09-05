@@ -1,0 +1,120 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MoneyManager
+build_property.RootNamespace = MoneyManager
+build_property.ProjectDir = D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/ExpenseType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVR5cGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/ExpenseType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVR5cGVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/ExpenseType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVR5cGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/ExpenseType/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVR5cGVcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Expense/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Expense/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Expense/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Expense/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZVxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/IncomeType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lVHlwZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/IncomeType/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lVHlwZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/IncomeType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lVHlwZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/IncomeType/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lVHlwZVxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Income/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Income/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Income/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Income/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lXFVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/Statistics/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdGlzdGljc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Important documents/Important/Programming/Repository/MoneyManager/MoneyManager/MoneyManager/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

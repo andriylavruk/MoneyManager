@@ -1,5 +1,7 @@
-﻿using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+﻿using AutoMapper;
+using MoneyManager.Models;
+using MoneyManager.Models.ViewModels.IncomeTypeViewModels;
+using MoneyManager.Models.ViewModels.IncomeViewModels;
 using MoneyManager.Repositories.Interfaces;
 using MoneyManager.Services.Interfaces;
 using System.Linq.Expressions;
@@ -10,16 +12,21 @@ public class IncomeService : IIncomeService
 {
     protected readonly IIncomeRepository _incomeRepository;
     protected readonly IIncomeTypeRepository _incomeTypeRepository;
+    private readonly IMapper _mapper;
 
-    public IncomeService(IIncomeRepository incomeRepository, IIncomeTypeRepository incomeTypeRepository)
+    public IncomeService(IIncomeRepository incomeRepository, IIncomeTypeRepository incomeTypeRepository, IMapper mapper)
     {
         _incomeRepository = incomeRepository;
         _incomeTypeRepository = incomeTypeRepository;
+        _mapper = mapper;
     }
 
     public async Task<IncomeViewModel> GetIncomeViewModelByIdAsync(int? id)
     {
-        return new IncomeViewModel(await _incomeRepository.GetByIdAsync(id));
+        var income = await _incomeRepository.GetByIdAsync(id);
+        var mappedIncome = _mapper.Map<IncomeViewModel>(income);
+
+        return mappedIncome;
     }
 
     public async Task<IEnumerable<Income>> GetAllIncomesAsync()
@@ -36,16 +43,9 @@ public class IncomeService : IIncomeService
     {
         if (entity != null)
         {
-            var income = new Income
-            {
-                Id = entity.Id,
-                Description = entity.Description,
-                Amount = entity.Amount,
-                DateCreated = entity.DateCreated,
-                IncomeTypeId = entity.IncomeTypeId
-            };
+            var mappedIncome = _mapper.Map<Income>(entity);
 
-            await _incomeRepository.AddAsync(income);
+            await _incomeRepository.AddAsync(mappedIncome);
         }
     }
 

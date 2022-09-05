@@ -13,6 +13,8 @@ builder.Services.AddDbContext<IdentityApplicationDbContext>(options => options.U
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityApplicationDbContext>();
 
 var app = builder.Build();

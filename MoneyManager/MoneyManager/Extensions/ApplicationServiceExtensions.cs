@@ -1,7 +1,5 @@
 ﻿using MoneyManager.Repositories;
 using MoneyManager.Repositories.Interfaces;
-using MoneyManager.Repositories.Services;
-using MoneyManager.Repositories.Services.Interfaces;
 using MoneyManager.Services;
 using MoneyManager.Services.Interfaces;
 

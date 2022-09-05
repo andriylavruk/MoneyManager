@@ -554,3 +554,5 @@ D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManage
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net6.0\MoneyManager.pdb
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net6.0\MoneyManager.genruntimeconfig.cache
 D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\obj\Debug\net6.0\ref\MoneyManager.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net6.0\AutoMapper.dll
+D:\Important documents\Important\Programming\Repository\MoneyManager\MoneyManager\MoneyManager\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MoneyManager.Helpers;
 using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
-using MoneyManager.Repositories.Services.Interfaces;
+using MoneyManager.Models.ViewModels.ExpenseViewModels;
+using MoneyManager.Services.Interfaces;
 
 namespace MoneyManager.Controllers;
 
@@ -106,6 +106,12 @@ public class ExpenseController : Controller
         }
 
         var expenseViewModel = await _expenseService.GetExpenseViewModelByIdAsync(id);
+
+        if (expenseViewModel == null)
+        {
+            return NotFound();
+        }
+
         expenseViewModel.TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync();
 
         if (expenseViewModel == null)
@@ -145,6 +151,12 @@ public class ExpenseController : Controller
         }
 
         var expenseViewModel = await _expenseService.GetExpenseViewModelByIdAsync(id);
+
+        if (expenseViewModel == null)
+        {
+            return NotFound();
+        }
+
         expenseViewModel.TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync();
 
         if (expenseViewModel == null)
@@ -165,6 +177,9 @@ public class ExpenseController : Controller
 
             return RedirectToAction("Index");
         }
+
+        expenseViewModel.TypeDropDown = await _expenseTypeService.GetExpenseTypesSelectListItemAsync();
+
         return  View(expenseViewModel);
     }
 }

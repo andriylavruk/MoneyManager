@@ -1,5 +1,5 @@
 ﻿using MoneyManager.Models;
-using MoneyManager.Models.ViewModels;
+using MoneyManager.Models.ViewModels.IncomeViewModels;
 using System.Linq.Expressions;
 
 namespace MoneyManager.Services.Interfaces;
